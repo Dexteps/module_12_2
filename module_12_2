@@ -1,0 +1,35 @@
+import  unittest
+from module_12_2 import Runner, Tournament
+
+class TestTournament(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.all_results = dict()
+
+    def setUp(self):
+        self.a = Runner('Усэйн', 10)
+        self.b = Runner('Андрей', 9)
+        self.c = Runner('Ник', 3)
+
+
+    def test_start1(self):
+        go_t = Tournament(90, self.a, self.c)
+        TestTournament.all_results['t1'] = go_t.start()
+
+    def test_start2(self):
+        go_t = Tournament(90,  self.b, self.c)
+        TestTournament.all_results['t2'] = go_t.start()
+
+    def test_start3(self):
+        go_t = Tournament(90, self.a, self.b, self.c)
+        TestTournament.all_results['t3'] = go_t.start()
+    @classmethod
+    def tearDownClass(cls):
+        for key, value in TestTournament.all_results.items():
+            print(f'{key}')
+            for key, value in value.items():
+                print(f'{key}: {value}')
+
+
+if __name__ == '__main__':
+    unittest.main
